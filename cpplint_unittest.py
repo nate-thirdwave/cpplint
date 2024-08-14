@@ -461,20 +461,20 @@ class CpplintTest(CpplintTestBase):
   def testErrorSuppression(self):
     # Two errors on same line:
     self.TestLint(
-        'long a = (int64) 65;',
-        ['Using C-style cast.  Use static_cast<int64>(...) instead'
+        'long a = (int64_t) 65;',
+        ['Using C-style cast.  Use static_cast<int64_t>(...) instead'
          '  [readability/casting] [4]',
-         'Use int16/int64/etc, rather than the C type long'
+         'Use int16_t/int64_t/etc, rather than the C type long'
          '  [runtime/int] [4]',
         ])
     # One category of error suppressed:
     self.TestLint(
-        'long a = (int64) 65;  // NOLINT(runtime/int)',
-        'Using C-style cast.  Use static_cast<int64>(...) instead'
+        'long a = (int64_t) 65;  // NOLINT(runtime/int)',
+        'Using C-style cast.  Use static_cast<int64_t>(...) instead'
         '  [readability/casting] [4]')
     # Two categories of errors suppressed:
     self.TestLint(
-        'long a = (int64) 65;  // NOLINT(runtime/int,readability/casting)',
+        'long a = (int64_t) 65;  // NOLINT(runtime/int,readability/casting)',
         '')
 
     # All categories suppressed: (two aliases)
@@ -485,12 +485,12 @@ class CpplintTest(CpplintTestBase):
         'long a = 65;  // NOLINT(foo)',
         ['Unknown NOLINT error category: foo'
          '  [readability/nolint] [5]',
-         'Use int16/int64/etc, rather than the C type long  [runtime/int] [4]',
+         'Use int16_t/int64_t/etc, rather than the C type long  [runtime/int] [4]',
         ])
     # Irrelevant NOLINT directive has no effect:
     self.TestLint(
         'long a = 65;  // NOLINT(readability/casting)',
-        'Use int16/int64/etc, rather than the C type long'
+        'Use int16_t/int64_t/etc, rather than the C type long'
         '  [runtime/int] [4]')
     # NOLINTNEXTLINE silences warning for the next line instead of current line
     error_collector = ErrorCollector(self.assertTrue)
@@ -680,14 +680,14 @@ class CpplintTest(CpplintTestBase):
   def testVariableDeclarations(self):
     self.TestLint(
         'long a = 65;',
-        'Use int16/int64/etc, rather than the C type long'
+        'Use int16_t/int64_t/etc, rather than the C type long'
         '  [runtime/int] [4]')
     self.TestLint(
         'long double b = 65.0;',
         '')
     self.TestLint(
         'long long aa = 6565;',
-        'Use int16/int64/etc, rather than the C type long'
+        'Use int16_t/int64_t/etc, rather than the C type long'
         '  [runtime/int] [4]')
 
   # Test C-style cast cases.
@@ -706,16 +706,16 @@ class CpplintTest(CpplintTestBase):
         '  [readability/casting] [4]')
 
     self.TestLint(
-        'uint16 a = (uint16)1.0;',
-        'Using C-style cast.  Use static_cast<uint16>(...) instead'
+        'uint16 a = (uint16_t)1.0;',
+        'Using C-style cast.  Use static_cast<uint16_t>(...) instead'
         '  [readability/casting] [4]')
     self.TestLint(
-        'int32 a = (int32)1.0;',
-        'Using C-style cast.  Use static_cast<int32>(...) instead'
+        'int32 a = (int32_t)1.0;',
+        'Using C-style cast.  Use static_cast<int32_t>(...) instead'
         '  [readability/casting] [4]')
     self.TestLint(
-        'uint64 a = (uint64)1.0;',
-        'Using C-style cast.  Use static_cast<uint64>(...) instead'
+        'uint64 a = (uint64_t)1.0;',
+        'Using C-style cast.  Use static_cast<uint64_t>(...) instead'
         '  [readability/casting] [4]')
     self.TestLint(
         'size_t a = (size_t)1.0;',
@@ -904,8 +904,8 @@ class CpplintTest(CpplintTestBase):
     self.TestLint('int a = int();', '')  # constructor
     self.TestLint('X::X() : a(int()) {}', '')  # default constructor
     self.TestLint('operator bool();', '')  # Conversion operator
-    self.TestLint('new int64(123);', '')  # "new" operator on basic type
-    self.TestLint('new   int64(123);', '')  # "new" operator on basic type
+    self.TestLint('new int64_t(123);', '')  # "new" operator on basic type
+    self.TestLint('new   int64_t(123);', '')  # "new" operator on basic type
     self.TestLint('new const int(42);', '')  # "new" on const-qualified type
     self.TestLint('using a = bool(int arg);', '')  # C++11 alias-declaration
     self.TestLint('x = bit_cast<double(*)[3]>(y);', '')  # array of array
@@ -940,7 +940,7 @@ class CpplintTest(CpplintTestBase):
     self.TestLint('typedef bool(MyClass::*MemberFunctionPointer)() const;', '')
     self.TestLint('void Function(bool(FunctionPointerArg)());', '')
     self.TestLint('void Function(bool(FunctionPointerArg)()) {}', '')
-    self.TestLint('typedef set<int64, bool(*)(int64, int64)> SortedIdSet', '')
+    self.TestLint('typedef set<int64_t, bool(*)(int64_t, int64_t)> SortedIdSet', '')
     self.TestLint(
         'bool TraverseNode(T *Node, bool(VisitorBase:: *traverse) (T *t)) {}',
         '')

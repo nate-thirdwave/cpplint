@@ -5383,7 +5383,7 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension,
     match = re.search(r'\b(short|long(?! +double)|long long)\b', line)
     if match:
       error(filename, linenum, 'runtime/int', 4,
-            f'Use int16/int64/etc, rather than the C type {match.group(1)}')
+            f'Use int16_t/int64_t/etc, rather than the C type {match.group(1)}')
 
   # Check if some verboten operator overloading is going on
   # TODO(unknown): catch out-of-line unary operator&:
@@ -5810,7 +5810,7 @@ def CheckCasts(filename, clean_lines, linenum, error):
   # probably a member operator declaration or default constructor.
   match = re.search(
       r'(\bnew\s+(?:const\s+)?|\S<\s*(?:const\s+)?)?\b'
-      r'(int|float|double|bool|char|int32|uint32|int64|uint64)'
+      r'(int|float|double|bool|char|int32_t|uint32_t|int64_t|uint64_t)'
       r'(\([^)].*)', line)
   expecting_function = ExpectingFunctionArgs(clean_lines, linenum)
   if match and not expecting_function:
@@ -5854,7 +5854,7 @@ def CheckCasts(filename, clean_lines, linenum, error):
 
   if not expecting_function:
     CheckCStyleCast(filename, clean_lines, linenum, 'static_cast',
-                    r'\((int|float|double|bool|char|u?int(16|32|64)|size_t)\)', error)
+                    r'\((int|float|double|bool|char|u?int(16|32|64)_t|size_t)\)', error)
 
   # This doesn't catch all cases. Consider (const char * const)"hello".
   #

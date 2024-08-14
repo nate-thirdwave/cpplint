@@ -36,6 +36,7 @@ A bunch of long-overdue modernizations of the codebase!
 * Usages of deprecated unittest aliases were refactored by @tirkarthi (https://github.com/cpplint/cpplint/pull/182), @aaronliu0130 and @jayvdb
 * Typos in this changelog, comments and functions were fixed by @jayvdb (https://github.com/cpplint/cpplint/pull/245), @aaronliu0130 and @tkruse
 * %-strings were modernized into f-strings by @aaronliu0130
+* The check for C-style casts now looks for the standard fixed-width integer typenames instead of non-standard ones by @nate-thirdwave
 
 1.6.1 (2022-08-20)
 ==================
