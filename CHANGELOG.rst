@@ -2,7 +2,7 @@
 Changelog
 *********
 
-1.7 (Unreleased)
+2.0 (Unreleased)
 ==================
 
 A bunch of long-overdue modernizations of the codebase!
@@ -18,6 +18,7 @@ A bunch of long-overdue modernizations of the codebase!
 * build/include-what-you-use now supports a plethora of new functions, courtesy of @geoffviola (https://github.com/cpplint/cpplint/pull/94)
 * build/include-what-you-use will no longer err on similarly-named classes from other namespaces thanks to @geoffviola (https://github.com/cpplint/cpplint/pull/273)
 * Indented functions inside namespaces will now be correctly erred on, courtesy of @Yujinmon (https://github.com/cpplint/cpplint/pull/235)
+* The check for C-style casts now looks for the standard fixed-width integer typenames instead of non-standard ones (e.g. int32_t instead of int32) thanks to @nate-thirdwave (https://github.com/cpplint/cpplint/pull/282)
 * `[[(un)likely]]` no longer clouds readability/braces's super spy−scanning of braces, courtesy of @aaronliu0130 (https://github.com/cpplint/cpplint/pull/265)
 * C++20 headers will no longer be flagged as C headers thanks to @miker2 (https://github.com/cpplint/cpplint/pull/216)
    * Same goes for C++23 and C23 headers, thanks to @aaronliu0130 (https://github.com/cpplint/cpplint/pull/239)
@@ -36,7 +37,6 @@ A bunch of long-overdue modernizations of the codebase!
 * Usages of deprecated unittest aliases were refactored by @tirkarthi (https://github.com/cpplint/cpplint/pull/182), @aaronliu0130 and @jayvdb
 * Typos in this changelog, comments and functions were fixed by @jayvdb (https://github.com/cpplint/cpplint/pull/245), @aaronliu0130 and @tkruse
 * %-strings were modernized into f-strings by @aaronliu0130
-* The check for C-style casts now looks for the standard fixed-width integer typenames instead of non-standard ones by @nate-thirdwave
 
 1.6.1 (2022-08-20)
 ==================
