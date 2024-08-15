@@ -260,3 +260,8 @@ int i;
 for (i = 0; i < max; ++i); // bug waiting to happen
 if (i == j)
     return i;
+
+void cast_check() {
+  int16_t a = 0;
+  uint64_t b = (int64_t)a;
+}
