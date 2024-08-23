@@ -3415,7 +3415,7 @@ def CheckForNonStandardConstructs(filename, clean_lines, linenum,
 
   if re.search(r'\b(const|volatile|void|char|short|int|long'
             r'|float|double|signed|unsigned'
-            r'|schar|u?int8|u?int16|u?int32|u?int64)'
+            r'|schar|u?int8_t|u?int16_t|u?int32_t|u?int64_t)'
             r'\s+(register|static|extern|typedef)\b',
             line):
     error(filename, linenum, 'build/storage_class', 5,
@@ -5330,7 +5330,7 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension,
   """Checks rules from the 'C++ language rules' section of cppguide.html.
 
   Some of these rules are hard to test (function overloading, using
-  uint32 inappropriately), but we do the best we can.
+  uint32_t inappropriately), but we do the best we can.
 
   Args:
     filename: The name of the current file.
@@ -5810,7 +5810,7 @@ def CheckCasts(filename, clean_lines, linenum, error):
   # probably a member operator declaration or default constructor.
   match = re.search(
       r'(\bnew\s+(?:const\s+)?|\S<\s*(?:const\s+)?)?\b'
-      r'(int|float|double|bool|char|int32_t|uint32_t|int64_t|uint64_t)'
+      r'(int|float|double|bool|char|int16_t|uint16_t|int32_t|uint32_t|int64_t|uint64_t)'
       r'(\([^)].*)', line)
   expecting_function = ExpectingFunctionArgs(clean_lines, linenum)
   if match and not expecting_function:
