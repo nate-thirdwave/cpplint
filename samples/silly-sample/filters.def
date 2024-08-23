@@ -4,9 +4,9 @@
 Done processing src/sillycode.cpp
 Category 'build' errors found: 1
 Category 'legal' errors found: 1
-Category 'readability' errors found: 5
+Category 'readability' errors found: 4
 Category 'runtime' errors found: 12
-Total errors found: 19
+Total errors found: 18
 
 src/sillycode.cpp:0:  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
 src/sillycode.cpp:3:  Found C system header after C++ system header. Should be: sillycode.h, c system, c++ system, other.  [build/include_order] [4]
@@ -26,5 +26,4 @@ src/sillycode.cpp:208:  Static/global string variables are not permitted.  [runt
 src/sillycode.cpp:227:  Static/global string variables are not permitted.  [runtime/string] [4]
 src/sillycode.cpp:228:  Using C-style cast.  Use reinterpret_cast<double*>(...) instead  [readability/casting] [4]
 src/sillycode.cpp:243:  Using C-style cast.  Use reinterpret_cast<derived2*>(...) instead  [readability/casting] [4]
-src/sillycode.cpp:266:  Using C-style cast.  Use static_cast<int64_t>(...) instead  [readability/casting] [4]
 
